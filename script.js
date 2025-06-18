@@ -1,11 +1,17 @@
-// Aguarda o HTML carregar completamente antes de rodar o script
+// O evento 'DOMContentLoaded' espera que todo o HTML da página seja carregado e analisado
+// antes de executar o código que está dentro dele. Isso evita erros de "timing".
 document.addEventListener('DOMContentLoaded', () => {
 
-    // --- LÓGICA DO FORMULÁRIO ---
+    // ================================================= //
+    //            LÓGICA DO FORMULÁRIO                   //
+    // ================================================= //
     const form = document.getElementById('meuFormulario');
+
+    // A lógica do formulário agora está segura aqui dentro.
     if (form) {
         form.addEventListener('submit', async (event) => {
-            event.preventDefault();
+            event.preventDefault(); // Impede o recarregamento da página
+
             const submitButton = form.querySelector('button');
             submitButton.disabled = true;
             submitButton.innerText = 'Enviando...';
@@ -18,15 +24,20 @@ document.addEventListener('DOMContentLoaded', () => {
             };
 
             try {
+                // Envia os dados para a função serverless
                 const response = await fetch('/.netlify/functions/salvar-dados', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(dadosDoFormulario),
                 });
+
                 if (response.ok) {
                     alert('Obrigado pelo seu contato! Formulário enviado com sucesso.');
                     form.reset();
                 } else {
+                    // Se o servidor responder com um erro, o erro será exibido no console
+                    const errorData = await response.json();
+                    console.error('Erro do servidor:', errorData);
                     alert('Houve um erro ao enviar o formulário. Tente novamente.');
                 }
             } catch (error) {
@@ -39,18 +50,23 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // --- LÓGICA DO CARROSSEL DE BANNERS ---
+    // ================================================= */
+    // ======== LÓGICA DO CARROSSEL DE BANNERS ========= */
+    // ================================================= */
     const banners = document.querySelectorAll('.service-banners .banner');
     if (banners.length > 0) {
         let bannerAtual = 0;
+
         function mostrarBanner() {
             banners.forEach(banner => banner.classList.remove('banner-visivel'));
             banners[bannerAtual].classList.add('banner-visivel');
         }
+
         function proximoBanner() {
             bannerAtual = (bannerAtual + 1) % banners.length;
             mostrarBanner();
         }
+
         mostrarBanner();
         setInterval(proximoBanner, 5000);
     }
