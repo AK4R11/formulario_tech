@@ -1,9 +1,10 @@
 {
-  "name": "formulario-com-planilha",
+  "name": "meu-formulario-techcleaner",
   "version": "1.0.0",
-  "description": "Formulário que envia dados para o Google Sheets via Netlify Functions.",
+  "description": "Formulário que envia dados para o Google Sheets e Firebase.",
   "dependencies": {
-    "googleapis": "^105.0.0"
+    "googleapis": "^105.0.0",
+    "firebase-admin": "^11.5.0"
   },
   "devDependencies": {
     "@babel/core": "^7.24.0"
