@@ -1,5 +1,7 @@
+Ini, TOML
+
 # Arquivo de Configuração da Netlify
 
 [build]
-  # Esta linha diz à Netlify onde encontrar as funções serverless.
-  functions = "netlify/functions/"
+  # Esta linha é a instrução que diz para a Netlify onde estão suas funções.
+  functions = "Netlify/funções"
