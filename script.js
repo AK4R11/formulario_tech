@@ -1,4 +1,4 @@
-// Aguarda o HTML carregar completamente antes de rodar o script
+// Aguarda o HTML carregar completamente antes de rodar qualquer script
 document.addEventListener('DOMContentLoaded', () => {
 
     // --- LÓGICA DO MODAL ---
@@ -7,29 +7,38 @@ document.addEventListener('DOMContentLoaded', () => {
     const modalTitulo = document.getElementById('modal-titulo');
     const modalMensagem = document.getElementById('modal-mensagem');
 
+    // Função para abrir o modal com um título e mensagem personalizados
     function abrirModal(titulo, mensagem) {
-        modalTitulo.innerText = titulo;
-        modalMensagem.innerText = mensagem;
-        modalContainer.classList.add('visivel');
-    }
-
-    function fecharModal() {
-        modalContainer.classList.remove('visivel');
-    }
-
-    // Fecha o modal se o usuário clicar no botão "X" ou fora da caixa de conteúdo
-    modalCloseBtn.addEventListener('click', fecharModal);
-    modalContainer.addEventListener('click', (event) => {
-        if (event.target === modalContainer) {
-            fecharModal();
+        if(modalTitulo && modalMensagem && modalContainer) {
+            modalTitulo.innerText = titulo;
+            modalMensagem.innerText = mensagem;
+            modalContainer.classList.add('visivel');
         }
-    });
+    }
 
-    // --- LÓGICA DO FORMULÁRIO (ATUALIZADA) ---
+    // Função para fechar o modal
+    function fecharModal() {
+        if(modalContainer) {
+            modalContainer.classList.remove('visivel');
+        }
+    }
+
+    // Adiciona os eventos para fechar o modal
+    if(modalCloseBtn && modalContainer) {
+        modalCloseBtn.addEventListener('click', fecharModal);
+        modalContainer.addEventListener('click', (event) => {
+            // Fecha o modal apenas se o clique for no fundo escuro, e não na caixa de conteúdo
+            if (event.target === modalContainer) {
+                fecharModal();
+            }
+        });
+    }
+
+    // --- LÓGICA DO FORMULÁRIO ---
     const form = document.getElementById('meuFormulario');
     if (form) {
         form.addEventListener('submit', async (event) => {
-            event.preventDefault();
+            event.preventDefault(); // Impede o recarregamento da página
             const submitButton = form.querySelector('button');
             submitButton.disabled = true;
             submitButton.innerText = 'Enviando...';
@@ -42,22 +51,21 @@ document.addEventListener('DOMContentLoaded', () => {
             };
 
             try {
+                // Envia os dados para a função serverless na Netlify
                 const response = await fetch('/.netlify/functions/salvar-dados', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(dadosDoFormulario),
                 });
+                
                 if (response.ok) {
-                    // SUBSTITUI O ALERT POR NOSSO NOVO MODAL
                     abrirModal('Sucesso!', 'Obrigado pelo seu contato! Responderemos em breve.');
                     form.reset();
                 } else {
-                    // SUBSTITUI O ALERT DE ERRO
                     abrirModal('Erro!', 'Houve um problema ao enviar o formulário. Tente novamente.');
                 }
             } catch (error) {
                 console.error('Erro de conexão:', error);
-                // SUBSTITUI O ALERT DE ERRO DE CONEXÃO
                 abrirModal('Erro de Conexão!', 'Não foi possível se conectar ao servidor. Verifique sua internet e tente novamente.');
             } finally {
                 submitButton.disabled = false;
@@ -66,7 +74,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // --- LÓGICA DO CARROSSEL (sem alterações) ---
+    // --- LÓGICA DO CARROSSEL DE BANNERS ---
     const banners = document.querySelectorAll('.service-banners .banner');
     if (banners.length > 0) {
         let bannerAtual = 0;
@@ -78,7 +86,7 @@ document.addEventListener('DOMContentLoaded', () => {
             bannerAtual = (bannerAtual + 1) % banners.length;
             mostrarBanner();
         }
-        mostrarBanner();
-        setInterval(proximoBanner, 5000);
+        mostrarBanner(); // Mostra o primeiro banner
+        setInterval(proximoBanner, 5000); // Troca de banner a cada 5 segundos
     }
 });
