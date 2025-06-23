@@ -93,6 +93,51 @@ h2{text-align:center;margin-bottom:1.5rem;font-size:2rem;text-shadow:2px 2px 4px
     margin-bottom: 0;
 }
 
+/* Adicione esta regra junto com a de 'input, textarea' para compartilhar estilos */
+input, textarea, select {
+    width: 100%;
+    padding: .8rem;
+    background: rgba(255,255,255,.15);
+    border: 1px solid rgba(255,255,255,.4);
+    border-radius: 10px;
+    color: #fff;
+    font-size: 1rem;
+    box-sizing: border-box;
+    transition: background-color .3s,border-color .3s;
+    /* Essencial para customização da aparência */
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+}
+
+/* Adicione 'select:focus' à regra de foco existente */
+input:focus, textarea:focus, select:focus {
+    outline: 0;
+    background: rgba(51,50,50,.25);
+    border-color: #007bff;
+}
+
+/* Adicione estas novas regras para criar a seta customizada */
+.select-wrapper {
+    position: relative;
+}
+
+.select-wrapper::after {
+    content: '▼';
+    font-size: 1rem;
+    color: #fff;
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+}
+
+/* Estilo para as opções dentro da caixa de seleção (para melhor visualização) */
+select option {
+    background: #2c3e50;
+    color: #fff;
+}
 
 /* =================================================================== */
 /* ESTILOS PARA O MODAL DE NOTIFICAÇÃO (CORRIGIDO)                     */
