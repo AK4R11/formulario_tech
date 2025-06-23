@@ -47,7 +47,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 nome: event.target.nome.value,
                 email: event.target.email.value,
                 whatsapp: event.target.whatsapp.value,
+                servico: event.target.servico.value, 
                 mensagem: event.target.mensagem.value
+                
             };
 
             try {
@@ -74,6 +76,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    
     // --- LÓGICA DO CARROSSEL DE BANNERS ---
     const banners = document.querySelectorAll('.service-banners .banner');
     if (banners.length > 0) {
