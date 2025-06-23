@@ -1,12 +1,9 @@
 {
-  "name": "meu-formulario-techcleaner",
+  "name": "formulario-com-planilha",
   "version": "1.0.0",
-  "description": "Formulário que envia dados para o Google Sheets e Firebase.",
+  "description": "Formulário que envia dados para o Google Sheets e notifica por e-mail.",
   "dependencies": {
     "googleapis": "^105.0.0",
-    "firebase-admin": "^11.5.0"
-  },
-  "devDependencies": {
-    "@babel/core": "^7.24.0"
+    "nodemailer": "^6.9.13"
   }
 }
