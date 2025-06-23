@@ -35,11 +35,45 @@ h2{text-align:center;margin-bottom:1.5rem;font-size:2rem;text-shadow:2px 2px 4px
 .service-banners{position:fixed;right:20px;top:50%;transform:translateY(-50%);width:280px;height:350px;background:rgba(0,0,0,.7);color:#fff;padding:20px 15px;border-radius:15px;box-shadow:0 0 15px rgba(0,0,0,.5);z-index:10;display:flex;align-items:center;justify-content:center}.service-banners .banner{position:absolute;text-align:center;opacity:0;transition:opacity .8s ease-in-out}.service-banners .banner.banner-visivel{opacity:1}.service-banners .banner img{width:120px;height:120px;object-fit:cover;border-radius:50%;margin-bottom:15px;border:3px solid #007bff}.service-banners .banner h3{font-size:1.3rem;margin-bottom:8px;margin-top:0}.service-banners .banner p{font-size:1rem;line-height:1.5;margin-bottom:0}
 
 /* ================== RESPONSIVIDADE ================== */
+
+/* As regras aqui dentro só valem para telas com largura máxima de 992px (tablets e celulares). */
+/* Para telas ainda menores, como as de celular, ajustamos ainda mais. */
 @media (max-width: 992px) {
-  .service-banners {display: none;}
+  /* Oculta os banners em telas menores para focar no conteúdo principal. */
+  .service-banners {
+    display: none; 
+  }
+
+  /* Ajusta o corpo da página para o layout mobile */
   body {
-    justify-content: center;
-    padding-left: 1rem;
-    padding-right: 1rem;
+    /* Centraliza o formulário horizontalmente. */
+    justify-content: center; 
+    /* Move o formulário para mais perto do topo da tela, em vez de ficar no meio. */
+    align-items: flex-start; 
+    /* Remove os paddings laterais do desktop e adiciona um geral para mobile. */
+    padding: 2rem 1rem; 
+  }
+
+  /* Ajusta o container do formulário para telas pequenas */
+  .form-container {
+    width: 95%; /* O formulário ocupa mais espaço da tela. */
+    padding: 1.5rem; /* Diminui um pouco o espaçamento interno. */
+    margin-top: 1rem; /* Adiciona uma pequena margem no topo. */
+  }
+
+  /* Ajusta o tamanho do título principal do formulário */
+  h2 {
+    font-size: 1.8rem;
+  }
+
+  /* Ajusta o tamanho dos textos dos campos */
+  label {
+    font-size: 0.9rem;
+  }
+  
+  /* Ajusta o botão para uma melhor experiência de toque */
+  button {
+      padding: 0.9rem;
+      font-size: 1.1rem;
   }
 }
