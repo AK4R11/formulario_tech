@@ -1,7 +1,0 @@
-Ini, TOML
-
-# Arquivo de Configuração da Netlify
-
-[build]
-  # Esta linha é a instrução que diz para a Netlify onde estão suas funções.
-  functions = "Netlify/funções"

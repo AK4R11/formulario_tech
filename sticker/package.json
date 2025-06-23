@@ -1,8 +1,0 @@
-{
-  "name": "formulario-com-planilha",
-  "version": "1.0.0",
-  "description": "Formulário que envia dados para o Google Sheets via Netlify Functions.",
-  "dependencies": {
-    "googleapis": "^105.0.0"
-  }
-}
