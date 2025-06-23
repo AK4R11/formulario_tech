@@ -1,17 +1,35 @@
-// O evento 'DOMContentLoaded' espera que todo o HTML da página seja carregado e analisado
-// antes de executar o código que está dentro dele. Isso evita erros de "timing".
+// Aguarda o HTML carregar completamente antes de rodar o script
 document.addEventListener('DOMContentLoaded', () => {
 
-    // ================================================= //
-    //            LÓGICA DO FORMULÁRIO                   //
-    // ================================================= //
-    const form = document.getElementById('meuFormulario');
+    // --- LÓGICA DO MODAL ---
+    const modalContainer = document.getElementById('modal-container');
+    const modalCloseBtn = document.getElementById('modal-close-btn');
+    const modalTitulo = document.getElementById('modal-titulo');
+    const modalMensagem = document.getElementById('modal-mensagem');
 
-    // A lógica do formulário agora está segura aqui dentro.
+    function abrirModal(titulo, mensagem) {
+        modalTitulo.innerText = titulo;
+        modalMensagem.innerText = mensagem;
+        modalContainer.classList.add('visivel');
+    }
+
+    function fecharModal() {
+        modalContainer.classList.remove('visivel');
+    }
+
+    // Fecha o modal se o usuário clicar no botão "X" ou fora da caixa de conteúdo
+    modalCloseBtn.addEventListener('click', fecharModal);
+    modalContainer.addEventListener('click', (event) => {
+        if (event.target === modalContainer) {
+            fecharModal();
+        }
+    });
+
+    // --- LÓGICA DO FORMULÁRIO (ATUALIZADA) ---
+    const form = document.getElementById('meuFormulario');
     if (form) {
         form.addEventListener('submit', async (event) => {
-            event.preventDefault(); // Impede o recarregamento da página
-
+            event.preventDefault();
             const submitButton = form.querySelector('button');
             submitButton.disabled = true;
             submitButton.innerText = 'Enviando...';
@@ -24,61 +42,42 @@ document.addEventListener('DOMContentLoaded', () => {
             };
 
             try {
-                // Envia os dados para a função serverless
                 const response = await fetch('/.netlify/functions/salvar-dados', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(dadosDoFormulario),
                 });
-
                 if (response.ok) {
-                    alert('Obrigado pelo seu contato! Formulário enviado com sucesso.');
+                    // SUBSTITUI O ALERT POR NOSSO NOVO MODAL
+                    abrirModal('Sucesso!', 'Obrigado pelo seu contato! Responderemos em breve.');
                     form.reset();
                 } else {
-                    // Se o servidor responder com um erro, o erro será exibido no console
-                    const errorData = await response.json();
-                    console.error('Erro do servidor:', errorData);
-                    alert('Houve um erro ao enviar o formulário. Tente novamente.');
+                    // SUBSTITUI O ALERT DE ERRO
+                    abrirModal('Erro!', 'Houve um problema ao enviar o formulário. Tente novamente.');
                 }
             } catch (error) {
                 console.error('Erro de conexão:', error);
-                alert('Houve um erro de conexão. Por favor, tente novamente mais tarde.');
+                // SUBSTITUI O ALERT DE ERRO DE CONEXÃO
+                abrirModal('Erro de Conexão!', 'Não foi possível se conectar ao servidor. Verifique sua internet e tente novamente.');
             } finally {
                 submitButton.disabled = false;
                 submitButton.innerText = 'Enviar';
             }
         });
-
- // --- NOVA FUNÇÃO PARA MOSTRAR NOTIFICAÇÕES ---
-    function mostrarNotificacao(mensagem, tipo = 'sucesso') {
-        const container = document.getElementById('notificacao-container');
-        const toast = document.createElement('div');
-        toast.className = `toast ${tipo}`;
-        toast.innerText = mensagem;
-        container.appendChild(toast);
-        setTimeout(() => {
-            toast.remove();
-        }, 4000); // Remove a notificação após 4 segundos
-    }
     }
 
-    // ================================================= */
-    // ======== LÓGICA DO CARROSSEL DE BANNERS ========= */
-    // ================================================= */
+    // --- LÓGICA DO CARROSSEL (sem alterações) ---
     const banners = document.querySelectorAll('.service-banners .banner');
     if (banners.length > 0) {
         let bannerAtual = 0;
-
         function mostrarBanner() {
             banners.forEach(banner => banner.classList.remove('banner-visivel'));
             banners[bannerAtual].classList.add('banner-visivel');
         }
-
         function proximoBanner() {
             bannerAtual = (bannerAtual + 1) % banners.length;
             mostrarBanner();
         }
-
         mostrarBanner();
         setInterval(proximoBanner, 5000);
     }
