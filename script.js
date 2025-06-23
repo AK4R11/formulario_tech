@@ -48,6 +48,18 @@ document.addEventListener('DOMContentLoaded', () => {
                 submitButton.innerText = 'Enviar';
             }
         });
+
+ // --- NOVA FUNÇÃO PARA MOSTRAR NOTIFICAÇÕES ---
+    function mostrarNotificacao(mensagem, tipo = 'sucesso') {
+        const container = document.getElementById('notificacao-container');
+        const toast = document.createElement('div');
+        toast.className = `toast ${tipo}`;
+        toast.innerText = mensagem;
+        container.appendChild(toast);
+        setTimeout(() => {
+            toast.remove();
+        }, 4000); // Remove a notificação após 4 segundos
+    }
     }
 
     // ================================================= */
