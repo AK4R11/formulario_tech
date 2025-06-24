@@ -252,7 +252,7 @@ button:hover {
     text-align: center;
 }
 /* ... (demais estilos da página dev que já estavam corretos) ... */
-.main-container{text-align:center;padding:2rem;background:rgba(0,0,0,.6);border-radius:20px}.back-link{display:inline-block;margin-top:3rem;padding:10px 25px;font-weight:700;text-decoration:none;border-radius:5px;background-color:transparent;border:2px solid #0367d3;color:#fff;transition:all .3s ease}.back-link:hover{background-color:#0367d3;color:#fff;transform:scale(1.05)}.product-grid{display:flex;justify-content:center;gap:2rem;flex-wrap:wrap}.product-card{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.2);border-radius:15px;padding:2rem;width:250px;transition:transform .3s ease,box-shadow .3s ease}.product-card:hover{transform:translateY(-10px);box-shadow:0 10px 20px rgba(0,0,0,.4)}.product-card i{font-size:3rem;color:#00aaff;margin-bottom:1rem}.product-card h2{font-size:1.5rem;margin-bottom:1rem}.product-card p{font-size:.9rem;color:#ccc;line-height:1.6;margin-bottom:1.5rem}.product-button{display:inline-block;padding:10px 25px;background:#0367d3;color:#fff;text-decoration:none;border-radius:5px;font-weight:700;transition:background-color .3s ease;border:none;font-family:'Poppins',sans-serif;font-size:1rem;cursor:pointer}.product-button:hover{background:#0056b3}#scripts-modal-lista{list-style:none;padding:0;margin-top:1.5rem;text-align:left;max-height:300px;overflow-y:auto}#scripts-modal-lista li{padding:15px;border-bottom:1px solid #e0e0e0;display:flex;justify-content:space-between;align-items:center;font-size:1rem;color:#333}#scripts-modal-lista li:last-child{border-bottom:none}#scripts-modal-lista a{display:inline-block;padding:8px 15px;background-color:#0367d3;color:#fff;text-decoration:none;border-radius:5px;font-size:.9rem;font-weight:700;white-space:nowrap;transition:background-color .3s ease}#scripts-modal-lista a:hover{background-color:#0056b3}
+.main-container{text-align:center;padding:2rem;background:rgba(0,0,0,.6);border-radius:20px}.back-link{display:inline-block;margin-top:3rem;padding:10px 25px;font-weight:700;text-decoration:none;border-radius:5px;background-color:#0367d3;border:2px solid #0367d3;color:#fff;transition:all .3s ease}.back-link:hover{background-color:#0367d3;color:#fff;transform:scale(1.05)}.product-grid{display:flex;justify-content:center;gap:2rem;flex-wrap:wrap}.product-card{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.2);border-radius:15px;padding:2rem;width:250px;transition:transform .3s ease,box-shadow .3s ease}.product-card:hover{transform:translateY(-10px);box-shadow:0 10px 20px rgba(0,0,0,.4)}.product-card i{font-size:3rem;color:#00aaff;margin-bottom:1rem}.product-card h2{font-size:1.5rem;margin-bottom:1rem}.product-card p{font-size:.9rem;color:#ccc;line-height:1.6;margin-bottom:1.5rem}.product-button{display:inline-block;padding:10px 25px;background:#0367d3;color:#fff;text-decoration:none;border-radius:5px;font-weight:700;transition:background-color .3s ease;border:none;font-family:'Poppins',sans-serif;font-size:1rem;cursor:pointer}.product-button:hover{background:#0056b3}#scripts-modal-lista{list-style:none;padding:0;margin-top:1.5rem;text-align:left;max-height:300px;overflow-y:auto}#scripts-modal-lista li{padding:15px;border-bottom:1px solid #e0e0e0;display:flex;justify-content:space-between;align-items:center;font-size:1rem;color:#333}#scripts-modal-lista li:last-child{border-bottom:none}#scripts-modal-lista a{display:inline-block;padding:8px 15px;background-color:#0367d3;color:#fff;text-decoration:none;border-radius:5px;font-size:.9rem;font-weight:700;white-space:nowrap;transition:background-color .3s ease}#scripts-modal-lista a:hover{background-color:#0056b3}
 
 /* =================================================================== */
 /* ESTILOS PARA O BOTÃO "AREA DEV" NO TOPO                             */
@@ -296,14 +296,37 @@ button:hover {
 }
 
 /* =================================================================== */
-/* RESPONSIVIDADE                                                      */
+/* RESPONSIVIDADE (ATUALIZADA)                                         */
 /* =================================================================== */
 @media (max-width: 992px) {
-  .service-banners, .header-dev-link {
+
+  /* Em telas menores, esconde APENAS o carrossel de banners */
+  .service-banners {
     display: none; 
   }
+  
+  /* Ajusta o corpo da página para empilhar os elementos verticalmente */
   body {
-    justify-content: center;
-    padding: 1rem;
+    justify-content: flex-start; /* Alinha os itens ao topo */
+    flex-direction: column;    /* Empilha os itens um sobre o outro */
+    padding: 2rem 1rem;        /* Adiciona um espaçamento geral */
+  }
+
+  /* Tira o botão "Area Dev" do canto e o coloca no fluxo da página */
+  .header-dev-link {
+    position: static; /* Deixa de ser fixo na tela */
+    order: 2;         /* Faz ele aparecer DEPOIS do formulário */
+    margin-top: 2rem; /* Adiciona um bom espaço acima dele */
+  }
+
+  /* Garante que o formulário venha primeiro */
+  .form-container {
+      order: 1;
+      margin-top: 1rem; /* Adiciona uma margem para não colar no topo */
+  }
+
+  /* Garante que o container da página DEV também ocupe a largura toda */
+  .main-container {
+    width: 95%;
   }
 }
