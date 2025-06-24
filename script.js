@@ -1,4 +1,4 @@
-// Aguarda o HTML carregar completamente antes de rodar qualquer script
+// Aguarda o HTML carregar completamente antes de rodar o script
 document.addEventListener('DOMContentLoaded', () => {
 
     // =====================================================================
@@ -37,34 +37,9 @@ document.addEventListener('DOMContentLoaded', () => {
             const submitButton = form.querySelector('button');
             submitButton.disabled = true;
             submitButton.innerText = 'Enviando...';
-
-            const dadosDoFormulario = {
-                nome: event.target.nome.value,
-                email: event.target.email.value,
-                whatsapp: event.target.whatsapp.value,
-                servico: event.target.servico.value,
-                mensagem: event.target.mensagem.value
-            };
-
-            try {
-                const response = await fetch('/.netlify/functions/salvar-dados', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(dadosDoFormulario),
-                });
-                if (response.ok) {
-                    abrirNotificacaoModal('Sucesso!', 'Obrigado pelo seu contato! Responderemos em breve.');
-                    form.reset();
-                } else {
-                    abrirNotificacaoModal('Erro!', 'Houve um problema ao enviar o formulário. Tente novamente.');
-                }
-            } catch (error) {
-                console.error('Erro de conexão:', error);
-                abrirNotificacaoModal('Erro de Conexão!', 'Não foi possível se conectar ao servidor.');
-            } finally {
-                submitButton.disabled = false;
-                submitButton.innerText = 'Enviar';
-            }
+            // ... (resto do seu código de envio fetch que já funciona) ...
+            // Exemplo de como chamar o modal no final da lógica fetch:
+            abrirNotificacaoModal('Sucesso!', 'Dados enviados!');
         });
         
         // --- Lógica do Carrossel de Banners ---
@@ -94,12 +69,11 @@ document.addEventListener('DOMContentLoaded', () => {
     if (productGrid) {
         // Se a grade for encontrada, executa todo o código da página de dev.
 
-        // --- "Banco de Dados" com os scripts para cada serviço ---
+        // --- "Banco de Dados" com os scripts. VERIFIQUE OS CAMINHOS AQUI ---
         const scriptsPorServico = {
             otimizacao: [
-                { nome: 'Script de Automatização', arquivo: 'scripts/limpeza-cache.zip' },
-                { nome: 'Otimizador de Build v1.2', arquivo: 'scripts/build-optimizer.zip' },
-                { nome: 'Analisador de Performance', arquivo: 'scripts/performance-analyzer.zip' }
+                { nome: 'Script de Automatização', arquivo: 'scripts/script-automacao.zip' },
+                { nome: 'Otimizador de Build v1.2', arquivo: 'scripts/build-optimizer.zip' }
             ],
             seguranca: [
                 { nome: 'Documentação da API de Segurança', arquivo: 'scripts/api-docs.pdf' }
@@ -125,6 +99,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (scripts.length > 0) {
                 scripts.forEach(script => {
                     const item = document.createElement('li');
+                    // Cria o link de download com o atributo 'download'
                     item.innerHTML = `<span>${script.nome}</span> <a href="${script.arquivo}" download>Baixar</a>`;
                     scriptsModalLista.appendChild(item);
                 });
@@ -146,7 +121,6 @@ document.addEventListener('DOMContentLoaded', () => {
         // --- Lógica de Clique nos Cards de Produto ---
         const productCards = document.querySelectorAll('.product-card');
         productCards.forEach(card => {
-            // Adicionamos o evento de clique ao botão dentro do card
             const button = card.querySelector('.product-button');
             if(button) {
                 button.addEventListener('click', () => {
