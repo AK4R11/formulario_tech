@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // "Banco de dados" com os scripts para cada serviço
     const scriptsPorServico = {
         otimizacao: [
-            { nome: 'Script de Automatização', arquivo: 'script_otimizacao_sistema.zip' },
+            { nome: 'Script de Automatização', arquivo: 'script_otimizacao_sistema.rar' },
             { nome: 'Otimizador de Build v1.2', arquivo: 'scripts/build-optimizer.zip' }
         ],
         seguranca: [
