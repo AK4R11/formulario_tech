@@ -445,17 +445,46 @@ button:hover {
     background-color: #0056b3;
 }
 
+/* =================================================================== */
+/* ESTILO PARA O NOVO LINK MOBILE (ESCONDIDO EM TELAS GRANDES)         */
+/* =================================================================== */
+.dev-link-mobile {
+    display: none; /* Por padrão, o link para celular fica escondido */
+}
 
 /* =================================================================== */
-/* RESPONSIVIDADE                                                      */
+/* RESPONSIVIDADE (ATUALIZADA)                                         */
 /* =================================================================== */
 @media (max-width: 992px) {
+  /* Em telas menores, esconde os banners e o botão do topo */
   .service-banners, .header-dev-link {
     display: none; 
   }
+  
+  /* Centraliza o formulário e ajusta o padding */
   body {
     justify-content: center;
     padding-left: 1rem;
     padding-right: 1rem;
+  }
+
+  /* --- MUDANÇA PRINCIPAL AQUI --- */
+  /* Agora, o link para celular se torna visível */
+  .dev-link-mobile {
+    display: block; /* Faz o link aparecer */
+    text-align: center;
+    margin-top: 2rem;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+  }
+
+  .dev-link-mobile a {
+    color: #fff;
+    font-weight: bold;
+    text-decoration: none;
+  }
+
+  .dev-link-mobile a:hover {
+    text-decoration: underline;
   }
 }
