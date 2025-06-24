@@ -176,8 +176,6 @@ button:hover {
     line-height: 1.5;
     margin-bottom: 0;
 }
-
-
 /* =================================================================== */
 /* ESTILOS PARA O MODAL (GERAL)                                        */
 /* =================================================================== */
@@ -299,34 +297,22 @@ button:hover {
 /* RESPONSIVIDADE (ATUALIZADA)                                         */
 /* =================================================================== */
 @media (max-width: 992px) {
-
-  /* Em telas menores, esconde APENAS o carrossel de banners */
-  .service-banners {
+  /* Em telas menores, esconde os banners e o botão do topo */
+  .service-banners, .header-dev-link {
     display: none; 
   }
-  
-  /* Ajusta o corpo da página para empilhar os elementos verticalmente */
+
+  /* Ajusta o corpo da página principal (index.html) para o modo mobile */
   body {
-    justify-content: flex-start; /* Alinha os itens ao topo */
-    flex-direction: column;    /* Empilha os itens um sobre o outro */
-    padding: 2rem 1rem;        /* Adiciona um espaçamento geral */
+    justify-content: center;
+    padding: 1rem;
   }
 
-  /* Tira o botão "Area Dev" do canto e o coloca no fluxo da página */
-  .header-dev-link {
-    position: static; /* Deixa de ser fixo na tela */
-    order: 2;         /* Faz ele aparecer DEPOIS do formulário */
-    margin-top: 2rem; /* Adiciona um bom espaço acima dele */
-  }
-
-  /* Garante que o formulário venha primeiro */
-  .form-container {
-      order: 1;
-      margin-top: 1rem; /* Adiciona uma margem para não colar no topo */
-  }
-
-  /* Garante que o container da página DEV também ocupe a largura toda */
-  .main-container {
-    width: 95%;
+  /* --- CORREÇÃO AQUI --- */
+  /* Regra específica para o fundo da página dev.html no celular */
+  body.dev-page {
+    /* Faz a imagem de fundo rolar com a página, corrigindo o 'zoom' no celular */
+    background-attachment: scroll; 
   }
 }
+
