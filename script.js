@@ -1,4 +1,4 @@
-// Aguarda o HTML carregar completamente antes de rodar o script
+// Aguarda o HTML carregar completamente antes de rodar qualquer script
 document.addEventListener('DOMContentLoaded', () => {
 
     // =====================================================================
@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const notificacaoMensagem = document.getElementById('modal-mensagem');
 
         function abrirNotificacaoModal(titulo, mensagem) {
-            if (notificacaoModal) {
+            if (notificacaoModal && notificacaoTitulo && notificacaoMensagem) {
                 notificacaoTitulo.innerText = titulo;
                 notificacaoMensagem.innerText = mensagem;
                 notificacaoModal.classList.add('visivel');
@@ -34,12 +34,37 @@ document.addEventListener('DOMContentLoaded', () => {
         // --- Lógica de Envio do Formulário ---
         form.addEventListener('submit', async (event) => {
             event.preventDefault();
-            const submitButton = form.querySelector('button');
+            const submitButton = form.querySelector('button[type="submit"]');
             submitButton.disabled = true;
             submitButton.innerText = 'Enviando...';
-            // ... (resto do seu código de envio fetch que já funciona) ...
-            // Exemplo de como chamar o modal no final da lógica fetch:
-            abrirNotificacaoModal('Sucesso!', 'Dados enviados!');
+
+            const dadosDoFormulario = {
+                nome: event.target.nome.value,
+                email: event.target.email.value,
+                whatsapp: event.target.whatsapp.value,
+                servico: event.target.servico.value,
+                mensagem: event.target.mensagem.value
+            };
+
+            try {
+                const response = await fetch('/.netlify/functions/salvar-dados', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(dadosDoFormulario),
+                });
+                if (response.ok) {
+                    abrirNotificacaoModal('Sucesso!', 'Obrigado pelo seu contato! Responderemos em breve.');
+                    form.reset();
+                } else {
+                    abrirNotificacaoModal('Erro!', 'Houve um problema ao enviar o formulário. Tente novamente.');
+                }
+            } catch (error) {
+                console.error('Erro de conexão:', error);
+                abrirNotificacaoModal('Erro de Conexão!', 'Não foi possível se conectar ao servidor.');
+            } finally {
+                submitButton.disabled = false;
+                submitButton.innerText = 'Enviar';
+            }
         });
         
         // --- Lógica do Carrossel de Banners ---
@@ -72,8 +97,9 @@ document.addEventListener('DOMContentLoaded', () => {
         // --- "Banco de Dados" com os scripts. VERIFIQUE OS CAMINHOS AQUI ---
         const scriptsPorServico = {
             otimizacao: [
-                { nome: 'Otimizar Sistema', arquivo: 'scripts/otimizar_sistema.zip' },
-                { nome: 'Otimizador de Build v1.2', arquivo: 'scripts/build-optimizer.zip' }
+                { nome: 'Script de Limpeza de Cache', arquivo: 'scripts/limpeza-cache.zip' },
+                { nome: 'Otimizador de Build v1.2', arquivo: 'scripts/build-optimizer.zip' },
+                { nome: 'Analisador de Performance', arquivo: 'scripts/performance-analyzer.zip' }
             ],
             seguranca: [
                 { nome: 'Documentação da API de Segurança', arquivo: 'scripts/api-docs.pdf' }
@@ -99,7 +125,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (scripts.length > 0) {
                 scripts.forEach(script => {
                     const item = document.createElement('li');
-                    // Cria o link de download com o atributo 'download'
+                    // Cria o link de download com o atributo 'download' que força o download
                     item.innerHTML = `<span>${script.nome}</span> <a href="${script.arquivo}" download>Baixar</a>`;
                     scriptsModalLista.appendChild(item);
                 });
