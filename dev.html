@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Área Dev - TechCleaner</title>
+    <link rel="icon" type="image/png" href="imagens/Design sem nome.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="dev-page">
+
+    <div class="main-container">
+        <h1>Área de Desenvolvedores</h1>
+        <p class="subtitle">Soluções e scripts para otimizar seu fluxo de trabalho.</p>
+
+        <div class="product-grid">
+            <div class="product-card" data-service="otimizacao">
+                <i class="fas fa-bolt"></i>
+                <h2>Script de Otimização</h2>
+                <p>Um conjunto de scripts para acelerar o build e deploy.</p>
+                <button class="product-button">Ver Scripts</button>
+            </div>
+            <div class="product-card" data-service="seguranca">
+                <i class="fas fa-shield-halved"></i>
+                <h2>API de Segurança</h2>
+                <p>Integre nossa API para uma camada extra de segurança.</p>
+                <button class="product-button">Ver API</button>
+            </div>
+            <div class="product-card" data-service="templates">
+                <i class="fas fa-database"></i>
+                <h2>Templates de Banco de Dados</h2>
+                <p>Modelos pré-configurados para iniciar seu novo projeto.</p>
+                <button class="product-button">Ver Templates</button>
+            </div>
+        </div>
+        <a href="index.html" class="back-link">Voltar para a Home</a>
+    </div>
+
+    <div id="scripts-modal-container" class="modal-backdrop">
+        <div class="modal-content">
+            <h2 id="scripts-modal-titulo"></h2>
+            <button id="scripts-modal-close-btn" class="modal-close-btn">Fechar</button>
+            <ul id="scripts-modal-lista">
+                </ul>
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>
