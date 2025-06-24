@@ -97,7 +97,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // --- "Banco de Dados" com os scripts. VERIFIQUE OS CAMINHOS AQUI ---
         const scriptsPorServico = {
             otimizacao: [
-                { nome: 'Script de Limpeza de Cache', arquivo: 'scripts/limpeza-cache.zip' },
+                { nome: 'Script de Limpeza de Cache', arquivo: 'scripts/otimizar_sistema.zip' },
                 { nome: 'Otimizador de Build v1.2', arquivo: 'scripts/build-optimizer.zip' },
                 { nome: 'Analisador de Performance', arquivo: 'scripts/performance-analyzer.zip' }
             ],
