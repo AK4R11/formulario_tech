@@ -72,7 +72,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // --- "Banco de Dados" com os scripts. VERIFIQUE OS CAMINHOS AQUI ---
         const scriptsPorServico = {
             otimizacao: [
-                { nome: 'Script de Automatização', arquivo: 'scripts/script-automacao.zip' },
+                { nome: 'Otimizar Sistema', arquivo: 'scripts/otimizar_sistema.zip' },
                 { nome: 'Otimizador de Build v1.2', arquivo: 'scripts/build-optimizer.zip' }
             ],
             seguranca: [
