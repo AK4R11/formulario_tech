@@ -12,17 +12,17 @@ body {
     background-attachment: fixed;
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: flex-start;
     min-height: 100vh;
     box-sizing: border-box;
-    padding: 0 4vw;
+    padding-left: 8vw;
+    padding-right: 320px;
 }
 
 /* Estilos exclusivos para a página dev.html */
 body.dev-page {
     background-image: url('imagens/wallpaperdev.png');
     justify-content: center;
-    align-items: center;
     padding: 1rem;
 }
 
@@ -41,24 +41,20 @@ body.dev-page {
     width: 90%;
     max-width: 400px;
 }
-
 h2 {
     text-align: center;
     margin-bottom: 1.5rem;
     font-size: 2rem;
     text-shadow: 2px 2px 4px rgba(0,0,0,.4);
 }
-
 .form-group {
     margin-bottom: 1.5rem;
 }
-
 label {
     display: block;
     margin-bottom: .5rem;
     font-weight: 700;
 }
-
 input, textarea, select {
     width: 100%;
     padding: .8rem;
@@ -73,17 +69,14 @@ input, textarea, select {
     -webkit-appearance: none;
     -moz-appearance: none;
 }
-
 input:focus, textarea:focus, select:focus {
     outline: 0;
     background: rgba(51,50,50,.25);
     border-color: #007bff;
 }
-
 .select-wrapper {
     position: relative;
 }
-
 .select-wrapper::after {
     content: '▼';
     font-size: 1rem;
@@ -94,12 +87,10 @@ input:focus, textarea:focus, select:focus {
     transform: translateY(-50%);
     pointer-events: none;
 }
-
 select option {
     background: #2c3e50;
     color: #fff;
 }
-
 button {
     width: 100%;
     padding: 1rem;
@@ -112,31 +103,26 @@ button {
     cursor: pointer;
     transition: background-color 0.3s ease, transform 0.2s ease;
 }
-
 button:hover {
     background-color: #0056b3;
     transform: scale(1.02);
 }
-
 .social-links {
     text-align: center;
     margin-top: 1.5rem;
     padding-top: 1rem;
     border-top: 1px solid rgba(255,255,255,.2);
 }
-
 .social-links p {
     margin-bottom: 1rem;
     font-size: .9rem;
 }
-
 .social-links a {
     color: #fff;
     margin: 0 15px;
     font-size: 1.8rem;
     transition: color .3s,transform .3s;
 }
-
 .social-links a:hover {
     color: #00aaff;
     transform: scale(1.2);
@@ -163,18 +149,15 @@ button:hover {
     align-items: center;
     justify-content: center;
 }
-
 .service-banners .banner {
     position: absolute;
     text-align: center;
     opacity: 0;
     transition: opacity 0.8s ease-in-out;
 }
-
 .service-banners .banner.banner-visivel {
     opacity: 1;
 }
-
 .service-banners .banner img {
     width: 120px;
     height: 120px;
@@ -183,13 +166,11 @@ button:hover {
     margin-bottom: 15px;
     border: 3px solid #007bff;
 }
-
 .service-banners .banner h3 {
     font-size: 1.3rem;
     margin-bottom: 8px;
     margin-top: 0;
 }
-
 .service-banners .banner p {
     font-size: 1rem;
     line-height: 1.5;
@@ -202,8 +183,7 @@ button:hover {
 /* =================================================================== */
 .modal-backdrop {
     position: fixed;
-    top: 0;
-    left: 0;
+    top: 0; left: 0;
     width: 100%;
     height: 100%;
     background: rgba(0, 0, 0, 0.7);
@@ -216,12 +196,10 @@ button:hover {
     pointer-events: none;
     transition: opacity 0.3s ease-in-out;
 }
-
 .modal-backdrop.visivel {
     opacity: 1;
     pointer-events: all;
 }
-
 .modal-content {
     background: #ffffff;
     color: #333333;
@@ -235,21 +213,17 @@ button:hover {
     transform: scale(0.9);
     transition: transform 0.3s ease-in-out;
 }
-
 .modal-backdrop.visivel .modal-content {
     transform: scale(1);
 }
-
 .modal-content h2 {
     margin-top: 0;
     color: #0367d3;
 }
-
 .modal-content p {
     color: #555555;
     font-size: 1.1rem;
 }
-
 .modal-close-btn {
     background-color: #6c757d;
     color: #fff;
@@ -262,7 +236,6 @@ button:hover {
     margin-top: 1.5rem;
     transition: background-color 0.3s ease, transform 0.2s ease;
 }
-
 .modal-close-btn:hover {
     background-color: #5a6268;
     transform: scale(1.05);
@@ -270,7 +243,7 @@ button:hover {
 
 
 /* =================================================================== */
-/* ESTILOS PARA O BOTÃO "AREA DEV" E PÁGINA DEV                        */
+/* ESTILOS PARA PÁGINA DEV E MODAL DE SCRIPTS                          */
 /* =================================================================== */
 .header-dev-link {
     position: fixed;
@@ -279,212 +252,19 @@ button:hover {
     z-index: 100;
     text-align: center;
 }
-
-.header-dev-link p {
-    margin: 0 0 8px 0;
-    color: #fff;
-    font-size: 0.9rem;
-    font-weight: 600;
-    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
-}
-
-.dev-button-header {
-    display: inline-block;
-    padding: 10px 25px;
-    color: #fff;
-    text-decoration: none;
-    font-weight: bold;
-    border-radius: 50px;
-    background: linear-gradient(45deg, #8A2387, #E94057, #F27121);
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
-    transition: all 0.3s ease;
-}
-
-.dev-button-header:hover {
-    transform: scale(1.1) translateY(-2px);
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
-}
-
-.main-container {
-    text-align: center;
-    padding: 2rem;
-    background: rgba(0, 0, 0, 0.6);
-    border-radius: 20px;
-}
-
-.back-link {
-    display: inline-block;
-    margin-top: 3rem;
-    color: #fff;
-    text-decoration: none;
-    font-weight: bold;
-}
-
-/* style.css */
-
-/* Estilo do botão "Voltar para a Home" (com borda) */
-.back-link {
-    display: inline-block;
-    margin-top: 3rem;
-    padding: 10px 25px;
-    font-weight: bold;
-    text-decoration: none;
-    border-radius: 5px;
-
-    /* --- CORREÇÃO AQUI --- */
-    background-color: #0367d3; /* Fundo transparente */
-    border: 2px solid #0367d3;      /* Borda azul */
-    color: #fff;                   /* Texto branco */
-    
-    transition: all 0.3s ease;
-}
-
-/* Efeito ao passar o mouse sobre o botão */
-.back-link:hover {
-    /* Preenche o fundo e muda a cor do texto */
-    background-color: #0367d3;
-    color: #ffffff;
-    transform: scale(1.05); /* Leve efeito de crescimento */
-}
-
-.product-grid {
-    display: flex;
-    justify-content: center;
-    gap: 2rem;
-    flex-wrap: wrap;
-}
-
-.product-card {
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: 15px;
-    padding: 2rem;
-    width: 250px;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.product-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 10px 20px rgba(0,0,0,0.4);
-}
-
-.product-card i {
-    font-size: 3rem;
-    color: #00aaff;
-    margin-bottom: 1rem;
-}
-
-.product-card h2 {
-    font-size: 1.5rem;
-    margin-bottom: 1rem;
-}
-
-.product-card p {
-    font-size: 0.9rem;
-    color: #ccc;
-    line-height: 1.6;
-    margin-bottom: 1.5rem;
-}
-
-.product-button {
-    display: inline-block;
-    padding: 10px 25px;
-    background: #0367d3;
-    color: #fff;
-    text-decoration: none;
-    border-radius: 5px;
-    font-weight: bold;
-    transition: background-color 0.3s ease;
-}
-
-.product-button:hover {
-    background: #0056b3;
-}
+/* ... (demais estilos da página dev que já estavam corretos) ... */
+.main-container{text-align:center;padding:2rem;background:rgba(0,0,0,.6);border-radius:20px}.back-link{display:inline-block;margin-top:3rem;padding:10px 25px;font-weight:700;text-decoration:none;border-radius:5px;background-color:transparent;border:2px solid #0367d3;color:#fff;transition:all .3s ease}.back-link:hover{background-color:#0367d3;color:#fff;transform:scale(1.05)}.product-grid{display:flex;justify-content:center;gap:2rem;flex-wrap:wrap}.product-card{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.2);border-radius:15px;padding:2rem;width:250px;transition:transform .3s ease,box-shadow .3s ease}.product-card:hover{transform:translateY(-10px);box-shadow:0 10px 20px rgba(0,0,0,.4)}.product-card i{font-size:3rem;color:#00aaff;margin-bottom:1rem}.product-card h2{font-size:1.5rem;margin-bottom:1rem}.product-card p{font-size:.9rem;color:#ccc;line-height:1.6;margin-bottom:1.5rem}.product-button{display:inline-block;padding:10px 25px;background:#0367d3;color:#fff;text-decoration:none;border-radius:5px;font-weight:700;transition:background-color .3s ease;border:none;font-family:'Poppins',sans-serif;font-size:1rem;cursor:pointer}.product-button:hover{background:#0056b3}#scripts-modal-lista{list-style:none;padding:0;margin-top:1.5rem;text-align:left;max-height:300px;overflow-y:auto}#scripts-modal-lista li{padding:15px;border-bottom:1px solid #e0e0e0;display:flex;justify-content:space-between;align-items:center;font-size:1rem;color:#333}#scripts-modal-lista li:last-child{border-bottom:none}#scripts-modal-lista a{display:inline-block;padding:8px 15px;background-color:#0367d3;color:#fff;text-decoration:none;border-radius:5px;font-size:.9rem;font-weight:700;white-space:nowrap;transition:background-color .3s ease}#scripts-modal-lista a:hover{background-color:#0056b3}
 
 
 /* =================================================================== */
-/* ESTILOS PARA O MODAL DE LISTA DE SCRIPTS (CONSOLIDADO)              */
-/* =================================================================== */
-#scripts-modal-lista {
-    list-style: none;
-    padding: 0;
-    margin-top: 1.5rem;
-    text-align: left;
-    max-height: 300px;
-    overflow-y: auto;
-}
-
-#scripts-modal-lista li {
-    padding: 15px;
-    border-bottom: 1px solid #e0e0e0;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-size: 1rem;
-    color: #333;
-}
-
-#scripts-modal-lista li:last-child {
-    border-bottom: none;
-}
-
-#scripts-modal-lista a {
-    display: inline-block;
-    padding: 8px 15px;
-    background-color: #0367d3;
-    color: #fff;
-    text-decoration: none;
-    border-radius: 5px;
-    font-size: 0.9rem;
-    font-weight: bold;
-    white-space: nowrap;
-    transition: background-color 0.3s ease;
-}
-
-#scripts-modal-lista a:hover {
-    background-color: #0056b3;
-}
-
-/* =================================================================== */
-/* ESTILO PARA O NOVO LINK MOBILE (ESCONDIDO EM TELAS GRANDES)         */
-/* =================================================================== */
-.dev-link-mobile {
-    display: none; /* Por padrão, o link para celular fica escondido */
-}
-
-/* =================================================================== */
-/* RESPONSIVIDADE (ATUALIZADA)                                         */
+/* RESPONSIVIDADE                                                      */
 /* =================================================================== */
 @media (max-width: 992px) {
-  /* Em telas menores, esconde os banners e o botão do topo */
   .service-banners, .header-dev-link {
     display: none; 
   }
-  
-  /* Centraliza o formulário e ajusta o padding */
   body {
     justify-content: center;
-    padding-left: 1rem;
-    padding-right: 1rem;
-  }
-
-  /* --- MUDANÇA PRINCIPAL AQUI --- */
-  /* Agora, o link para celular se torna visível */
-  .dev-link-mobile {
-    display: block; /* Faz o link aparecer */
-    text-align: center;
-    margin-top: 2rem;
-    padding-top: 1rem;
-    border-top: 1px solid rgba(255, 255, 255, 0.2);
-  }
-
-  .dev-link-mobile a {
-    color: #fff;
-    font-weight: bold;
-    text-decoration: none;
-  }
-
-  .dev-link-mobile a:hover {
-    text-decoration: underline;
+    padding: 1rem;
   }
 }
